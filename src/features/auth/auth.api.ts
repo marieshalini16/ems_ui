@@ -57,9 +57,8 @@ export async function login( credentials: LoginRequest,): Promise<LoginResponse>
 }
 
 
-export async function register(
-  data: RegisterRequest,
-): Promise<RegisterResponse> {
+export async function register(data: RegisterRequest): Promise<RegisterResponse> {
+  
   const response = await fetch(`${API_URL}/auth/register`,
     {
       method: "POST",
