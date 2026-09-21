@@ -118,3 +118,26 @@ export const adminSidebarItems: SidebarItem[] = [
     path: "/admin/profile",
   },
 ];
+
+export const employeeSidebarItems: SidebarItem[] = [
+  {
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    path: "/employee/dashboard",
+  },
+  {
+    label: "My Tasks",
+    icon: ClipboardList,
+    path: "/employee/tasks",
+  },
+  {
+    label: "Announcements",
+    icon: Megaphone,
+    path: "/employee/announcements",
+  },
+  {
+    label: "Profile",
+    icon: UserCircle,
+    path: "/employee/profile",
+  },
+];

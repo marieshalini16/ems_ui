@@ -5,7 +5,6 @@ import { getAdminDashboard, type AdminDashboardData } from "../features/admin/da
 export default function AdminDashboardPage() {
 
   const [dashboardData, setDashboardData] = useState<AdminDashboardData | null>(null);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
