@@ -40,11 +40,11 @@ export default function LoginForm() {
       localStorage.setItem("role_id",String(data.role_id),);
 
       if (data.role_id === 1) {
-        navigate("/admin-dashboard");
+        navigate("/admin/dashboard");
       } 
 
       else if (data.role_id === 2) {
-        navigate("/employee-dashboard");
+        navigate("/employee/dashboard");
       } 
 
       else {
