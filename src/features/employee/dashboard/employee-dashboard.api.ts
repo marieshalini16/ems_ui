@@ -33,6 +33,7 @@ interface EmployeeDashboardResponse {
 }
 
 export async function getEmployeeDashboard(): Promise<EmployeeDashboardData> {
+  
   const token = localStorage.getItem("access_token");
 
   if (!token) {
@@ -48,6 +49,7 @@ export async function getEmployeeDashboard(): Promise<EmployeeDashboardData> {
   });
 
   if (!response.ok) {
+    
     if (response.status === 401) {
       throw new Error("Session expired. Please login again.");
     }

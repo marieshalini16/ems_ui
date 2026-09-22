@@ -1,8 +1,6 @@
-
 interface StatCardProps {
   title: string;
   value: number | string;
-
   variant:
     | "primary"
     | "success"

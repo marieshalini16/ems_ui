@@ -1,16 +1,11 @@
 import DashboardLayout from "../../../componenets/layout/DashboardLayout";
-import { employeeSidebarItems } from "../../../componenets/layout/Sidebar";
+import { employeeSidebarItems } from "../../../componenets/layout/sidebar.config";
 import Card from "../../../componenets/ui/Card";
 import StatCard from "../../../componenets/dashboard/StatCard";
 import StatusBadge from "../../../componenets/dashboard/StatusBadge";
-import DataTable, {
-  type TableColumn,
-} from "../../../componenets/dashboard/DataTable";
+import DataTable, { type TableColumn } from "../../../componenets/dashboard/DataTable";
+import type { EmployeeDashboardData, EmployeeTask } from "./employee-dashboard.api";
 
-import type {
-  EmployeeDashboardData,
-  EmployeeTask,
-} from "./employee-dashboard.api";
 
 interface EmployeeDashboardProps {
   userName: string;
@@ -33,8 +28,6 @@ export default function EmployeeDashboard({
     >
       <div className="min-h-[calc(100vh-4rem)] bg-background p-5 lg:p-7">
 
-        {/* Page Header */}
-
         <div className="mb-6">
           <h1 className="text-xl font-semibold text-text-primary">
             Dashboard
@@ -44,8 +37,6 @@ export default function EmployeeDashboard({
             Welcome back, {userName}!
           </p>
         </div>
-
-        {/* Statistics */}
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
 
@@ -68,8 +59,6 @@ export default function EmployeeDashboard({
           />
 
         </div>
-
-        {/* My Tasks */}
 
         <div className="mt-5">
           <MyTasks tasks={data.tasks} />
@@ -172,15 +161,13 @@ function MyTasks({ tasks }: MyTasksProps) {
   );
 }
 
-
-// --------------------------------------------------
 // Priority
-// --------------------------------------------------
 
-function getPriorityVariant(
-  priority: string,
-): "success" | "warning" | "danger" | "info" | "neutral" {
+function getPriorityVariant(priority: string)
+: "success" | "warning" | "danger" | "info" | "neutral" {
+
   switch (priority.toLowerCase()) {
+
     case "high":
       return "danger";
 
@@ -196,9 +183,7 @@ function getPriorityVariant(
 }
 
 
-// --------------------------------------------------
 // Status
-// --------------------------------------------------
 
 function getStatusVariant(
   status: string,
@@ -223,10 +208,7 @@ function getStatusVariant(
   }
 }
 
-
-// --------------------------------------------------
 // Date
-// --------------------------------------------------
 
 function formatDate(date: string | null) {
   if (!date) {

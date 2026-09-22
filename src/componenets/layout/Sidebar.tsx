@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { LayoutDashboard, Users, Building2, ClipboardList, Megaphone, UserCircle, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 export interface SidebarItem {
   label: string;
@@ -20,16 +20,13 @@ export default function Sidebar({
   onNavigate,
   onLogout,
 }: SidebarProps) {
-    
+
   return (
     <aside className="flex min-h-screen w-sidebar shrink-0 flex-col bg-navy-900">
-    
+
       <div className="flex h-header items-center gap-3 border-b border-white/10 px-5">
         <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary-600">
-          <Users
-            size={17}
-            className="text-white"
-          />
+          <span className="text-white">U</span>
         </div>
 
         <span className="text-base font-semibold text-white">
@@ -37,22 +34,19 @@ export default function Sidebar({
         </span>
       </div>
 
-     
       <nav className="flex-1 px-3 py-5">
         <div className="space-y-1">
-          {items.map((item) => {
-            const Icon = item.icon;
 
-            const isActive =
-              activePath === item.path;
+          {items.map((item) => {
+
+            const Icon = item.icon;
+            const isActive = activePath === item.path;
 
             return (
               <button
                 key={item.path}
                 type="button"
-                onClick={() =>
-                  onNavigate?.(item.path)
-                }
+                onClick={() => onNavigate?.(item.path)}
                 className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition duration-fast ${
                   isActive
                     ? "bg-primary-600 text-white"
@@ -65,9 +59,9 @@ export default function Sidebar({
               </button>
             );
           })}
+          
         </div>
       </nav>
-
 
       <div className="border-t border-white/10 p-3">
         <button
@@ -80,64 +74,7 @@ export default function Sidebar({
           <span>Logout</span>
         </button>
       </div>
+
     </aside>
   );
 }
-
-
-
-export const adminSidebarItems: SidebarItem[] = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    path: "/admin/dashboard",
-  },
-  {
-    label: "Employees",
-    icon: Users,
-    path: "/admin/employees",
-  },
-  {
-    label: "Departments",
-    icon: Building2,
-    path: "/admin/departments",
-  },
-  {
-    label: "Tasks",
-    icon: ClipboardList,
-    path: "/admin/tasks",
-  },
-  {
-    label: "Announcements",
-    icon: Megaphone,
-    path: "/admin/announcements",
-  },
-  {
-    label: "Profile",
-    icon: UserCircle,
-    path: "/admin/profile",
-  },
-];
-
-export const employeeSidebarItems: SidebarItem[] = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    path: "/employee/dashboard",
-  },
-  {
-    label: "My Tasks",
-    icon: ClipboardList,
-    path: "/employee/tasks",
-  },
-  {
-    label: "Announcements",
-    icon: Megaphone,
-    path: "/employee/announcements",
-  },
-  {
-    label: "Profile",
-    icon: UserCircle,
-    path: "/employee/profile",
-  },
-];
