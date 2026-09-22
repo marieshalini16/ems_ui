@@ -5,6 +5,12 @@ import StatCard from "../../../componenets/dashboard/StatCard";
 import StatusBadge from "../../../componenets/dashboard/StatusBadge";
 import DataTable, {type TableColumn } from "../../../componenets/dashboard/DataTable";
 import type { AdminDashboardData, RecentEmployee } from "./admin-dashboard.api";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
 
 interface AdminDashboardProps {
   userName: string;
@@ -150,11 +156,7 @@ function RecentEmployees({ employees }: RecentEmployeesProps) {
 
 function TaskStatistics({ statistics }: { statistics: AdminDashboardData["taskStatistics"];}) 
 {
-  const total = statistics.reduce((sum, item) => 
-    sum + item.count,
-    0,
-  );
-
+  
   return (
     <Card className="overflow-hidden p-0">
       <div className="border-b border-border-light px-5 py-4">
@@ -166,7 +168,6 @@ function TaskStatistics({ statistics }: { statistics: AdminDashboardData["taskSt
       <div className="flex min-h-[230px] items-center gap-8 p-6">
         <TaskDonut
           statistics={statistics}
-          total={total}
         />
 
         <div className="flex-1 space-y-4">
@@ -204,58 +205,57 @@ function TaskStatistics({ statistics }: { statistics: AdminDashboardData["taskSt
 
 //Task Donut
 
-function TaskDonut({ statistics, total }: {
+function TaskDonut({
+  statistics,
+}: {
   statistics: AdminDashboardData["taskStatistics"];
-  total: number;
 }) {
-  const radius = 48;
-  const circumference = 2 * Math.PI * radius;
-  let accumulated = 0;
+  const chartData = statistics.map((item) => ({
+    name: item.status,
+    value: item.count,
+    variant: item.variant,
+  }));
+
+  const getColor = (variant: string) => {
+    switch (variant) {
+      case "warning":
+        return "#f59e0b";
+
+      case "info":
+        return "#3b82f6";
+
+      case "success":
+        return "#22c55e";
+
+      default:
+        return "#94a3b8";
+    }
+  };
 
   return (
-    <div className="relative h-36 w-36 shrink-0">
-      <svg
-        viewBox="0 0 120 120"
-        className="h-full w-full -rotate-90"
-      >
-        <circle
-          cx="60"
-          cy="60"
-          r={radius}
-          fill="none"
-          className="stroke-navy-100"
-          strokeWidth="16"
-        />
-
-        {statistics.map((item) => {
-
-          const percentage = total === 0 ? 0 : item.count / total;
-          const segment = percentage * circumference;
-          const offset = -accumulated;
-          accumulated += segment;
-
-          const strokeClass =
-            item.variant === "warning"
-              ? "stroke-warning-500"
-              : item.variant === "info"
-                ? "stroke-info-500"
-                : "stroke-success-500";
-
-          return (
-            <circle
-              key={item.status}
-              cx="60"
-              cy="60"
-              r={radius}
-              fill="none"
-              className={strokeClass}
-              strokeWidth="20"
-              strokeDasharray={`${segment} ${circumference}`}
-              strokeDashoffset={offset}
-            />
-          );
-        })}
-      </svg>
+    <div className="h-36 w-36 shrink-0">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={chartData}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={38}
+            outerRadius={58}
+            paddingAngle={2}
+            stroke="none"
+          >
+            {chartData.map((item, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={getColor(item.variant)}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
