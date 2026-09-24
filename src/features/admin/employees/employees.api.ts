@@ -56,11 +56,14 @@ export async function createEmployee(data: CreateEmployeeRequest): Promise<Emplo
 export async function updateEmployee(
   id: number,
   data: UpdateEmployeeRequest,
-): Promise<Employee> {
-  return apiClient<Employee>(`/employees/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(data),
-  });
+): Promise<{ message: string; employee: Employee }> {
+  return apiClient<{ message: string; employee: Employee }>(
+    `/employees/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    },
+  );
 }
 
 export async function updateEmployeeStatus(

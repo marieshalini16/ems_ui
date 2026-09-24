@@ -69,9 +69,7 @@ export interface EmployeeQuery {
   is_active?: number;
 }
 
-/* -----------------------------
-   Employee List Response
------------------------------ */
+
 
 export interface EmployeeListResponse {
   data: Employee[];
@@ -81,9 +79,6 @@ export interface EmployeeListResponse {
   totalPages: number;
 }
 
-/* -----------------------------
-   Form Data
------------------------------ */
 
 export interface EmployeeFormData {
   full_name: string;
@@ -91,7 +86,7 @@ export interface EmployeeFormData {
   email: string;
   phone: string;
   password: string;
-  dept_id: number;
+  dept_id: number | "";
   designation: string;
   doj: string;
 }

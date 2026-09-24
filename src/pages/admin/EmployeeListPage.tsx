@@ -1,47 +1,39 @@
 import { useEffect, useState } from "react";
 
-import EmployeeList from "../../../features/admin/employees/EmployeeList";
-
+import EmployeeList from "../../features/admin/employees/EmployeeList";
+import { getDepartments } from "../../features/admin/departments/departments.api";
 import type {
   Department,
   Employee,
   EmployeeFormData,
-} from "../../../features/admin/employees/employees.types";
+} from "../../features/admin/employees/employees.types";
 
 import {
   getEmployees,
   createEmployee,
   updateEmployee,
   updateEmployeeStatus,
-} from "../../../features/admin/employees/employees.api";
+} from "../../features/admin/employees/employees.api";
 
 export default function EmployeeListPage() {
+
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
-
   const [search, setSearch] = useState("");
   const [departmentId, setDepartmentId] = useState("");
   const [status, setStatus] = useState("");
-
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
   const [loading, setLoading] = useState(true);
   const [formLoading, setFormLoading] = useState(false);
-
   const [showForm, setShowForm] = useState(false);
+  const [formMode, setFormMode] = useState<"create" | "edit">("create");
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | undefined>();
 
-  const [formMode, setFormMode] =
-    useState<"create" | "edit">("create");
-
-  const [selectedEmployee, setSelectedEmployee] =
-    useState<Employee | undefined>();
-
-  // --------------------------------
   // Load Employees
-  // --------------------------------
 
   const loadEmployees = async () => {
+
     try {
       setLoading(true);
 
@@ -63,19 +55,37 @@ export default function EmployeeListPage() {
 
       setEmployees(response.data);
       setTotalPages(response.totalPages);
-    } catch (error) {
+    } 
+    
+    catch (error) {
       console.error(
         "Failed to load employees:",
         error,
       );
-    } finally {
+    } 
+    
+    finally {
       setLoading(false);
     }
   };
 
-  // --------------------------------
-  // Load Employees
-  // --------------------------------
+
+  const loadDepartments = async () => {
+  try {
+    const response = await getDepartments({
+      page: 1,
+      limit: 100,
+      is_active: 1,
+    });
+
+    setDepartments(response.data);
+  } catch (error) {
+    console.error(
+      "Failed to load departments:",
+      error,
+    );
+  }
+};
 
   useEffect(() => {
     loadEmployees();
@@ -86,9 +96,9 @@ export default function EmployeeListPage() {
     page,
   ]);
 
-  // --------------------------------
-  // Add Employee
-  // --------------------------------
+  useEffect(() => {
+    loadDepartments();
+  }, []);
 
   const handleAddEmployee = () => {
     setSelectedEmployee(undefined);
@@ -96,9 +106,6 @@ export default function EmployeeListPage() {
     setShowForm(true);
   };
 
-  // --------------------------------
-  // Edit Employee
-  // --------------------------------
 
   const handleEditEmployee = (
     employee: Employee,
@@ -108,33 +115,61 @@ export default function EmployeeListPage() {
     setShowForm(true);
   };
 
-  // --------------------------------
-  // Submit Employee
-  // --------------------------------
-const handleSubmit = async (data: EmployeeFormData): Promise<void> => {
-  setFormLoading(true);
+
+
+  const handleSubmit = async (
+  data: EmployeeFormData,
+  ): Promise<void> => {
+    setFormLoading(true);
 
   try {
+    if (data.dept_id === "") {
+      console.error("Department is required");
+      return;
+    }
+
+    const employeeData = {
+      full_name: data.full_name,
+      user_name: data.user_name,
+      email: data.email,
+      phone: data.phone,
+      dept_id: data.dept_id,
+      designation: data.designation,
+      doj: data.doj,
+      ...(data.password
+        ? { password: data.password }
+        : {}),
+    };
+
     if (formMode === "create") {
-      await createEmployee(data);
-    } else if (selectedEmployee) {
-      await updateEmployee(selectedEmployee.id, data);
+      await createEmployee({
+        ...employeeData,
+        password: data.password,
+      });
+    } 
+    
+    else if (selectedEmployee) {
+      await updateEmployee(
+        selectedEmployee.id,
+        employeeData,
+      );
     }
 
     setShowForm(false);
     setSelectedEmployee(undefined);
 
     await loadEmployees();
-  } catch (error) {
-    console.error("Failed to save employee:", error);
-  } finally {
+  } 
+  
+  catch (error) {
+    console.error("FAILED TO SAVE EMPLOYEE:", error);
+  } 
+  
+  finally {
     setFormLoading(false);
   }
 };
 
-  // --------------------------------
-  // Toggle Status
-  // --------------------------------
 
   const handleToggleStatus = async (
     employee: Employee,
@@ -159,42 +194,29 @@ const handleSubmit = async (data: EmployeeFormData): Promise<void> => {
     }
   };
 
-  // --------------------------------
-  // Logout
-  // --------------------------------
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     window.location.href = "/login";
   };
 
-  // --------------------------------
-  // Render
-  // --------------------------------
-
+ 
   return (
     <EmployeeList
       userName="Admin"
-
       employees={employees}
       departments={departments}
-
       search={search}
       departmentId={departmentId}
       status={status}
-
       page={page}
       totalPages={totalPages}
-
       loading={loading}
       formLoading={formLoading}
-
       showForm={showForm}
       formMode={formMode}
       selectedEmployee={selectedEmployee}
-
       onLogout={handleLogout}
-
       onAddEmployee={handleAddEmployee}
       onEditEmployee={handleEditEmployee}
 

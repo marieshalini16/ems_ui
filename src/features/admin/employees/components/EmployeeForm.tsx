@@ -1,21 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Employee } from "../employees.types";
+import type { Department, Employee, EmployeeFormData } from "../employees.types";
+import { X } from "lucide-react";
 
-interface Department {
-  id: number;
-  dept_name: string;
-}
 
-interface EmployeeFormData {
-  full_name: string;
-  user_name: string;
-  email: string;
-  phone: string;
-  password: string;
-  dept_id: number | "";
-  designation: string;
-  doj: string;
-}
 
 interface EmployeeFormProps {
   mode: "create" | "edit";
@@ -49,12 +36,26 @@ export default function EmployeeForm({
   const [formData, setFormData] = useState<EmployeeFormData>(defaultForm);
 
   useEffect(() => {
+  if (mode === "edit" && employee) {
     setFormData({
-      ...defaultForm,
-      ...employee,
+      full_name: employee.full_name ?? "",
+      user_name: employee.user_name ?? "",
+      email: employee.email ?? "",
+      phone: employee.phone ?? "",
       password: "",
+      dept_id: employee.dept_id ?? "",
+      designation: employee.designation ?? "",
+      doj: employee.doj
+        ? employee.doj.split("T")[0]
+        : "",
     });
-  }, [employee]);
+
+    return;
+  }
+
+  setFormData(defaultForm);
+}, [mode, employee]);
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -97,7 +98,7 @@ export default function EmployeeForm({
           onClick={onClose}
           className="text-2xl text-danger-700 text-text-muted transition hover:text-text-primary "
         >
-          X
+          <X />
         </button>
       </div>
 
@@ -271,11 +272,7 @@ export default function EmployeeForm({
             disabled={loading}
             className="rounded-md bg-primary-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading
-              ? "Saving..."
-              : mode === "create"
-                ? "Add Employee"
-                : "Save Changes"}
+            {loading ? "Saving..." : mode === "create" ? "Add Employee" : "Save Changes"}
           </button>
         </div>
       </form>

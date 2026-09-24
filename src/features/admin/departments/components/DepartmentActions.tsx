@@ -1,23 +1,23 @@
 import { Pencil, ShieldCheck, Trash } from "lucide-react";
-import type { Employee } from "../employees.types";
+import type { Department } from "../departments.types";
 
-interface EmployeeActionsProps {
-  employee: Employee;
-  onEdit: (employee: Employee) => void;
-  onToggleStatus: (employee: Employee) => void;
+interface DepartmentActionsProps {
+  department: Department;
+  onEdit: (department: Department) => void;
+  onToggleStatus: (department: Department) => void;
 }
 
-export default function EmployeeActions({
-  employee,
+export default function DepartmentActions({
+  department,
   onEdit,
   onToggleStatus,
-}: EmployeeActionsProps) {
+}: DepartmentActionsProps) {
   return (
+    
     <div className="flex items-center gap-2">
-
       <button
         type="button"
-        onClick={() => onEdit(employee)}
+        onClick={() => onEdit(department)}
         className="rounded-md px-2.5 py-1.5 text-xs font-medium text-primary-600 transition hover:bg-primary-50"
       >
         <Pencil />
@@ -25,14 +25,7 @@ export default function EmployeeActions({
 
       <button
         type="button"
-        onClick={() =>
-          onToggleStatus(employee)
-        }
-        title={
-          employee.is_active
-            ? "Deactivate employee"
-            : "Activate employee"
-        }
+        onClick={() => onToggleStatus(department)}
         className={`
           flex
           h-8
@@ -43,13 +36,12 @@ export default function EmployeeActions({
           transition
 
           ${
-            employee.is_active
+            department.is_active
               ? "bg-danger-50 text-danger-600 hover:bg-danger-100"
               : "bg-success-50 text-success-600 hover:bg-success-100"
           }
-        `}
-      >
-        {employee.is_active ? <Trash /> : <ShieldCheck />}
+        `}      >
+        {department.is_active === 1 ? <Trash /> : <ShieldCheck />}
       </button>
     </div>
   );
