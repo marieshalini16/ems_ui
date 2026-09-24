@@ -6,12 +6,14 @@ import type {
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  fullWidth?: boolean;
 }
 
 export default function Button({
   children,
   disabled,
   className = "",
+  fullWidth = true,
   ...props
 }: ButtonProps) {
   return (
@@ -19,7 +21,7 @@ export default function Button({
       {...props}
       disabled={disabled}
       className={`
-        w-full
+        ${fullWidth ? "w-full" : "w-auto"}
         rounded-md
         bg-primary-600
         px-4

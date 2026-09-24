@@ -2,8 +2,8 @@ import DashboardLayout from "../../../componenets/layout/DashboardLayout";
 import { employeeSidebarItems } from "../../../componenets/layout/sidebar.config";
 import Card from "../../../componenets/ui/Card";
 import StatCard from "../../../componenets/dashboard/StatCard";
-import StatusBadge from "../../../componenets/dashboard/StatusBadge";
-import DataTable, { type TableColumn } from "../../../componenets/dashboard/DataTable";
+import StatusBadge from "../../../componenets/dashboard/DashboardStatusBadge";
+import DashboardTable, { type TableColumn } from "../../../componenets/dashboard/DashboardTable";
 import type { EmployeeDashboardData, EmployeeTask } from "./employee-dashboard.api";
 
 
@@ -18,6 +18,8 @@ export default function EmployeeDashboard({
   data,
   onLogout,
 }: EmployeeDashboardProps) {
+
+  
   return (
     <DashboardLayout
       sidebarItems={employeeSidebarItems}
@@ -151,7 +153,7 @@ function MyTasks({ tasks }: MyTasksProps) {
 
       </div>
 
-      <DataTable
+      <DashboardTable
         columns={columns}
         data={tasks}
         emptyMessage="No tasks assigned to you"
@@ -164,7 +166,7 @@ function MyTasks({ tasks }: MyTasksProps) {
 // Priority
 
 function getPriorityVariant(priority: string)
-: "success" | "warning" | "danger" | "info" | "neutral" {
+  : "success" | "warning" | "danger" | "info" | "neutral" {
 
   switch (priority.toLowerCase()) {
 

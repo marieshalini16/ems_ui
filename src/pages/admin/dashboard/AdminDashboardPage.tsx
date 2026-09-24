@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import AdminDashboard from "../features/admin/dashboard/AdminDashboard";
-import { getAdminDashboard, type AdminDashboardData } from "../features/admin/dashboard/admin-dashboard.api";
+import AdminDashboard from "../../../features/admin/dashboard/AdminDashboard";
+import { getAdminDashboard, type AdminDashboardData } from "../../../features/admin/dashboard/admin-dashboard.api";
 
 export default function AdminDashboardPage() {
 
@@ -14,16 +14,16 @@ export default function AdminDashboardPage() {
       try {
         const data = await getAdminDashboard();
         setDashboardData(data);
-      } 
-      
+      }
+
       catch (error) {
         setError(
           error instanceof Error
             ? error.message
             : "Failed to load dashboard",
         );
-      } 
-      
+      }
+
       finally {
         setLoading(false);
       }
