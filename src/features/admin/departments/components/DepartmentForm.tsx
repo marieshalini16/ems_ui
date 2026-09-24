@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import Input from "../../../../componenets/ui/Input";
-import Button from "../../../../componenets/ui/Button";
 
 import type {
   Department,
