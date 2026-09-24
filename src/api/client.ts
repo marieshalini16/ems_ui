@@ -8,17 +8,17 @@ export async function apiClient<T>(
   endpoint: string,
   options: RequestOptions = {},
 ): Promise<T> {
+
   const token = options.token ?? localStorage.getItem("access_token");
-
   const headers = new Headers(options.headers);
-
   headers.set("Content-Type", "application/json");
 
   if (token) {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, {
+  const response = await fetch(`${API_URL}${endpoint}`, 
+  {
     ...options,
     headers,
   });

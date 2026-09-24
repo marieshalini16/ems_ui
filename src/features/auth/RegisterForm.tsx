@@ -20,8 +20,8 @@ export default function RegisterForm() {
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
-    event.preventDefault();
 
+    event.preventDefault();
     setError("");
     setSuccess("");
 
@@ -67,18 +67,14 @@ export default function RegisterForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-5"
-    >
+    <form onSubmit={handleSubmit} className="space-y-5">
+      
       <Input
         label="Full Name"
         type="text"
         placeholder="Enter your full name"
         value={fullname}
-        onChange={(event) =>
-          setFullname(event.target.value)
-        }
+        onChange={(event) => setFullname(event.target.value)}
         autoComplete="name"
       />
 
@@ -87,9 +83,7 @@ export default function RegisterForm() {
         type="email"
         placeholder="Enter your email"
         value={email}
-        onChange={(event) =>
-          setEmail(event.target.value)
-        }
+        onChange={(event) => setEmail(event.target.value)}
         autoComplete="email"
       />
 
@@ -98,9 +92,7 @@ export default function RegisterForm() {
         type="tel"
         placeholder="Enter your phone number"
         value={phone}
-        onChange={(event) =>
-          setPhone(event.target.value)
-        }
+        onChange={(event) =>setPhone(event.target.value)}
         autoComplete="tel"
       />
 
@@ -109,9 +101,7 @@ export default function RegisterForm() {
         type="password"
         placeholder="Enter your password"
         value={password}
-        onChange={(event) =>
-          setPassword(event.target.value)
-        }
+        onChange={(event) => setPassword(event.target.value)}
         autoComplete="new-password"
       />
 

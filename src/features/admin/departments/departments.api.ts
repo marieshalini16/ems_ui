@@ -1,13 +1,6 @@
 import { apiClient } from "../../../api/client";
 
-import type {
-  CreateDepartmentRequest,
-  Department,
-  DepartmentListResponse,
-  DepartmentQuery,
-  DepartmentStatusRequest,
-  UpdateDepartmentRequest,
-} from "./departments.types";
+import type { CreateDepartmentRequest, Department, DepartmentListResponse, DepartmentQuery, DepartmentStatusRequest, UpdateDepartmentRequest } from "./departments.types";
 
 export async function getDepartments(
   query: DepartmentQuery = {},
@@ -41,6 +34,7 @@ export async function getDepartments(
 export async function createDepartment(
   data: CreateDepartmentRequest,
 ): Promise<Department> {
+
   return apiClient<Department>("/departments", {
     method: "POST",
     body: JSON.stringify(data),
@@ -51,6 +45,7 @@ export async function updateDepartment(
   id: number,
   data: UpdateDepartmentRequest,
 ): Promise<Department> {
+
   return apiClient<Department>(`/departments/${id}`, {
     method: "PATCH",
     body: JSON.stringify(data),
@@ -61,6 +56,7 @@ export async function updateDepartmentStatus(
   id: number,
   data: DepartmentStatusRequest,
 ): Promise<{ message: string }> {
+  
   return apiClient<{ message: string }>(
     `/departments/${id}/status`,
     {

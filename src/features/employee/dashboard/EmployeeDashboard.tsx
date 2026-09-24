@@ -18,7 +18,6 @@ export default function EmployeeDashboard({
   data,
   onLogout,
 }: EmployeeDashboardProps) {
-
   
   return (
     <DashboardLayout
@@ -28,6 +27,7 @@ export default function EmployeeDashboard({
       roleName="Employee"
       onLogout={onLogout}
     >
+
       <div className="min-h-[calc(100vh-4rem)] bg-background p-5 lg:p-7">
 
         <div className="mb-6">
@@ -71,16 +71,14 @@ export default function EmployeeDashboard({
   );
 }
 
-
-// --------------------------------------------------
 // My Tasks
-// --------------------------------------------------
 
 interface MyTasksProps {
   tasks: EmployeeTask[];
 }
 
 function MyTasks({ tasks }: MyTasksProps) {
+
   const columns: TableColumn<EmployeeTask>[] = [
     {
       key: "title",
@@ -184,13 +182,14 @@ function getPriorityVariant(priority: string)
   }
 }
 
-
 // Status
 
 function getStatusVariant(
   status: string,
 ): "success" | "warning" | "danger" | "info" | "neutral" {
+ 
   switch (status.toLowerCase()) {
+   
     case "completed":
       return "success";
 

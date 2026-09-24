@@ -19,9 +19,11 @@ export default function DataTable<T>({
   loading = false,
   emptyMessage = "No records found.",
 }: DataTableProps<T>) {
+
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-surface shadow-card">
       <div className="overflow-x-auto">
+        
         <table className="w-full">
           <thead>
             <tr className="border-b border-border bg-surface-muted">

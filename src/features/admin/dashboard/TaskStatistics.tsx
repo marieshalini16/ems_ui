@@ -27,11 +27,8 @@ export default function TaskStatistics({ statistics }: { statistics: AdminDashbo
               <div className="flex items-center gap-2">
                 <span
                   className={`h-2.5 w-2.5 rounded-full ${
-                    item.variant === "warning"
-                      ? "bg-warning-500"
-                      : item.variant === "info"
-                        ? "bg-info-500"
-                        : "bg-success-500"
+                    item.variant === "warning" ? "bg-warning-500"
+                      : item.variant === "info" ? "bg-info-500" : "bg-success-500"
                   }`}
                 />
 

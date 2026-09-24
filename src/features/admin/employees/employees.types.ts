@@ -15,13 +15,8 @@ export interface Employee {
   designation?: string | null;
   dept_id: number;
   is_active: number;
-
   department?: Department | null;
 }
-
-/* -----------------------------
-   Create Employee
------------------------------ */
 
 export interface CreateEmployeeRequest {
   full_name: string;
@@ -34,10 +29,6 @@ export interface CreateEmployeeRequest {
   doj?: string;
 }
 
-/* -----------------------------
-   Update Employee
------------------------------ */
-
 export interface UpdateEmployeeRequest {
   full_name?: string;
   user_name?: string;
@@ -49,17 +40,9 @@ export interface UpdateEmployeeRequest {
   doj?: string;
 }
 
-/* -----------------------------
-   Employee Status
------------------------------ */
-
 export interface EmployeeStatusRequest {
   is_active: number;
 }
-
-/* -----------------------------
-   Employee Query
------------------------------ */
 
 export interface EmployeeQuery {
   search?: string;
@@ -69,8 +52,6 @@ export interface EmployeeQuery {
   is_active?: number;
 }
 
-
-
 export interface EmployeeListResponse {
   data: Employee[];
   total: number;
@@ -78,7 +59,6 @@ export interface EmployeeListResponse {
   limit: number;
   totalPages: number;
 }
-
 
 export interface EmployeeFormData {
   full_name: string;

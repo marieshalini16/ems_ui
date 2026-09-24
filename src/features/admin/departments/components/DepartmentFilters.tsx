@@ -9,6 +9,7 @@ export default function DepartmentFilters({
   search,
   onSearchChange,
 }: DepartmentFiltersProps) {
+    
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2">
       <div className="relative">

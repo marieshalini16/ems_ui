@@ -9,6 +9,7 @@ export default function Pagination({
   totalPages,
   onPageChange,
 }: PaginationProps) {
+
   if (totalPages <= 1) {
     return null;
   }
@@ -16,11 +17,12 @@ export default function Pagination({
   return (
     <div className="mt-4 flex justify-center ">
       <div className="flex items-center gap-1">
+
         <button
           type="button"
           disabled={page === 1}
           onClick={() => onPageChange(page - 1)}
-          className="
+          className=" 
             flex
             h-9
             w-9
@@ -40,10 +42,7 @@ export default function Pagination({
           ‹
         </button>
 
-        {Array.from(
-          { length: totalPages },
-          (_, index) => index + 1,
-        ).map((pageNumber) => (
+        {Array.from({ length: totalPages },(_, index) => index + 1).map((pageNumber) => (
           <button
             key={pageNumber}
             type="button"

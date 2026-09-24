@@ -1,60 +1,34 @@
 import DashboardLayout from "../../../componenets/layout/DashboardLayout";
 import { adminSidebarItems } from "../../../componenets/layout/sidebar.config";
-
 import PageHeader from "../../../componenets/common/PageHeader";
-import DataTable, {
-  type TableColumn,
-} from "../../../componenets/common/DataTable";
+import DataTable, { type TableColumn } from "../../../componenets/common/DataTable";
 import Pagination from "../../../componenets/common/Pagination";
 import StatusBadge from "../../../componenets/common/StatusBadge";
-
 import DepartmentFilters from "./components/DepartmentFilters";
 import DepartmentActions from "./components/DepartmentActions";
 import DepartmentForm from "./components/DepartmentForm";
-
-import type {
-  Department,
-  DepartmentFormData,
-} from "./departments.types";
+import type { Department, DepartmentFormData } from "./departments.types";
 
 interface DepartmentListProps {
   userName: string;
-
   departments: Department[];
-
   search: string;
-
   page: number;
   totalPages: number;
-
   loading: boolean;
   formLoading: boolean;
-
   showForm: boolean;
   formMode: "create" | "edit";
-
   selectedDepartment?: Department;
 
   onLogout: () => void;
-
   onAddDepartment: () => void;
-  onEditDepartment: (
-    department: Department,
-  ) => void;
-
+  onEditDepartment: (department: Department) => void;
   onSearchChange: (value: string) => void;
-
   onPageChange: (page: number) => void;
-
-  onSubmit: (
-    data: DepartmentFormData,
-  ) => Promise<void>;
-
+  onSubmit: (data: DepartmentFormData) => Promise<void>;
   onCloseForm: () => void;
-
-  onToggleStatus: (
-    department: Department,
-  ) => void;
+  onToggleStatus: (department: Department) => void;
 }
 
 export default function DepartmentList({
@@ -77,6 +51,7 @@ export default function DepartmentList({
   onCloseForm,
   onToggleStatus,
 }: DepartmentListProps) {
+    
   const columns: TableColumn<Department>[] = [
     {
       key: "name",

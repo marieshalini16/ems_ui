@@ -12,14 +12,11 @@ export default function Input({
   id,
   className = "",
   ...props
-}: InputProps) 
-{
+}: InputProps) {
+
   return (
     <div className="space-y-1.5">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-text-primary"
-      >
+      <label htmlFor={id} className="block text-sm font-medium text-text-primary">
         {label}
       </label>
 

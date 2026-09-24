@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Department, Employee, EmployeeFormData } from "../employees.types";
 import { X } from "lucide-react";
 
+import type { Department, Employee, EmployeeFormData } from "../employees.types";
 
 
 interface EmployeeFormProps {
@@ -9,6 +9,7 @@ interface EmployeeFormProps {
   employee?: Employee;
   departments: Department[];
   loading?: boolean;
+
   onSubmit: (data: EmployeeFormData) => Promise<void>;
   onClose: () => void;
 }
@@ -45,9 +46,7 @@ export default function EmployeeForm({
       password: "",
       dept_id: employee.dept_id ?? "",
       designation: employee.designation ?? "",
-      doj: employee.doj
-        ? employee.doj.split("T")[0]
-        : "",
+      doj: employee.doj ? employee.doj.split("T")[0] : "",
     });
 
     return;
@@ -64,8 +63,7 @@ export default function EmployeeForm({
 
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        name === "dept_id" ? value === "" ? "" : Number(value) : value,
+      [name]: name === "dept_id" ? value === "" ? "" : Number(value) : value,
     }));
   };
 
@@ -76,12 +74,12 @@ export default function EmployeeForm({
 
   return (
 
-
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
   <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-xl bg-background-white p-6 shadow-card">
-      {/* Header */}
+
       <div className="mb-6 flex items-center justify-between">
         <div>
+
           <h2 className="text-xl font-semibold text-text-primary">
             {mode === "create" ? "Add Employee" : "Edit Employee"}
           </h2>
@@ -91,6 +89,7 @@ export default function EmployeeForm({
               ? "Create a new employee"
               : "Update employee information"}
           </p>
+
         </div>
 
         <button
@@ -105,7 +104,6 @@ export default function EmployeeForm({
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
 
-          {/* Full Name */}
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Full Name <span className="text-danger-600">*</span>
@@ -122,7 +120,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Username */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Username <span className="text-danger-600">*</span>
@@ -139,7 +137,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Email */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Email <span className="text-danger-600">*</span>
@@ -156,7 +154,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Phone */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Phone <span className="text-danger-600">*</span>
@@ -173,7 +171,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Password */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Password{" "}
@@ -197,7 +195,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Department */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Department <span className="text-danger-600">*</span>
@@ -223,7 +221,7 @@ export default function EmployeeForm({
             </select>
           </div>
 
-          {/* Designation */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Designation <span className="text-danger-600">*</span>
@@ -240,7 +238,7 @@ export default function EmployeeForm({
             />
           </div>
 
-          {/* Date of Joining */}
+
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Date of Joining <span className="text-danger-600">*</span>
@@ -257,7 +255,7 @@ export default function EmployeeForm({
           </div>
         </div>
 
-        {/* Buttons */}
+
         <div className="mt-8 flex justify-end gap-3 border-t border-border-light pt-5">
           <button
             type="button"

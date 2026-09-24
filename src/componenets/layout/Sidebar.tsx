@@ -48,9 +48,7 @@ export default function Sidebar({
                 type="button"
                 onClick={() => onNavigate?.(item.path)}
                 className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition duration-fast ${
-                  isActive
-                    ? "bg-primary-600 text-white"
-                    : "text-navy-300 hover:bg-navy-800 hover:text-white"
+                  isActive ? "bg-primary-600 text-white" : "text-navy-300 hover:bg-navy-800 hover:text-white"
                 }`}
               >
                 <Icon size={17} />

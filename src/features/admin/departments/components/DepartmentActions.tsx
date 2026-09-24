@@ -1,4 +1,5 @@
 import { Pencil, ShieldCheck, Trash } from "lucide-react";
+
 import type { Department } from "../departments.types";
 
 interface DepartmentActionsProps {
@@ -12,8 +13,9 @@ export default function DepartmentActions({
   onEdit,
   onToggleStatus,
 }: DepartmentActionsProps) {
-  return (
     
+  return (
+
     <div className="flex items-center gap-2">
       <button
         type="button"

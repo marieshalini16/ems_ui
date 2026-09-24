@@ -1,7 +1,4 @@
-import type {
-  ButtonHTMLAttributes,
-  ReactNode,
-} from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,6 +13,7 @@ export default function Button({
   fullWidth = true,
   ...props
 }: ButtonProps) {
+  
   return (
     <button
       {...props}

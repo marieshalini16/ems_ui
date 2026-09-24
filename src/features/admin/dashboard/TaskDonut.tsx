@@ -1,4 +1,5 @@
 import {PieChart, Pie, ResponsiveContainer } from "recharts";
+
 import type { AdminDashboardData } from "./admin-dashboard.api";
 
   const getColor = (variant: string) => {
@@ -27,7 +28,6 @@ export default function TaskDonut({ statistics }: {
     value: item.count,
     fill: getColor(item.variant),
   }));
-
 
 
   return (

@@ -10,51 +10,45 @@ import { login } from "./auth.api";
 export default function LoginForm() {
   const navigate = useNavigate();
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
 
   async function handleSubmit(event: SubmitEvent) {
+    
     event.preventDefault();
-
-
     setError("");
-
 
     if (!email.trim()) {
       setError("Email is required.");
       return;
     }
 
-
     if (!password.trim()) {
       setError("Password is required.");
       return;
     }
 
-
     try {
-      const data = await login({
-        email,
-        password,
-      });
-
+      const data = await login({email,password});
 
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("userId", String(data.userId));
       localStorage.setItem("role_id", String(data.role_id));
 
-
       if (data.role_id === 1) {
         navigate("/admin/dashboard");
-      } else if (data.role_id === 2) {
+      } 
+      else if (data.role_id === 2) {
         navigate("/employee/dashboard");
-      } else {
+      } 
+      else {
         setError("Invalid user role.");
       }
-    } catch (error) {
+    } 
+    
+    catch (error) {
       setError(
         error instanceof Error
           ? error.message
@@ -62,9 +56,6 @@ export default function LoginForm() {
       );
     }
   }
-
-
-
 
   return (
     <form
@@ -77,9 +68,7 @@ export default function LoginForm() {
         label="Email"
         placeholder="Enter your email"
         value={email}
-        onChange={(event) =>
-          setEmail(event.target.value)
-        }
+        onChange={(event) => setEmail(event.target.value)}
       />
 
 
@@ -89,11 +78,8 @@ export default function LoginForm() {
         label="Password"
         placeholder="Enter your password"
         value={password}
-        onChange={(event) =>
-          setPassword(event.target.value)
-        }
+        onChange={(event) => setPassword(event.target.value) }
       />
-
 
       {error && (
         <div className="rounded-md border border-danger-200 bg-danger-50 px-3 py-2.5">
@@ -103,9 +89,7 @@ export default function LoginForm() {
         </div>
       )}
 
-
       <Button type="submit" > Login </Button>
     </form>
   );
 }
-

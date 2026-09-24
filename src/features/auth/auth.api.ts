@@ -30,7 +30,7 @@ export interface RegisterResponse {
   };
 }
 
-
+//Login
 export async function login( credentials: LoginRequest,): Promise<LoginResponse> {
 
   const response = await fetch(`${API_URL}/auth/login`,
@@ -56,7 +56,7 @@ export async function login( credentials: LoginRequest,): Promise<LoginResponse>
   return data;
 }
 
-
+//Register
 export async function register(data: RegisterRequest): Promise<RegisterResponse> {
   
   const response = await fetch(`${API_URL}/auth/register`,

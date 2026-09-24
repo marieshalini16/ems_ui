@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 import Input from "../../../../componenets/ui/Input";
-
-import type {
-  Department,
-  DepartmentFormData,
-} from "../departments.types";
-import { X } from "lucide-react";
+import type { Department, DepartmentFormData } from "../departments.types";
 
 interface DepartmentFormProps {
   mode: "create" | "edit";
   department?: Department;
   loading: boolean;
 
-  onSubmit: (
-    data: DepartmentFormData,
-  ) => Promise<void>;
-
+  onSubmit: ( data: DepartmentFormData ) => Promise<void>;
   onClose: () => void;
 }
 
@@ -27,8 +20,8 @@ export default function DepartmentForm({
   onSubmit,
   onClose,
 }: DepartmentFormProps) {
-  const [formData, setFormData] =
-    useState<DepartmentFormData>({
+
+  const [formData, setFormData] = useState<DepartmentFormData>({
       dept_name: "",
       description: "",
     });
@@ -39,29 +32,28 @@ export default function DepartmentForm({
         dept_name: department.dept_name,
         description: department.description ?? "",
       });
-    } else {
+    } 
+    
+    else {
       setFormData({
         dept_name: "",
         description: "",
       });
     }
+
   }, [mode, department]);
 
   const handleChange = (
     field: keyof DepartmentFormData,
-    value: string,
-  ) => {
+    value: string,) => {
     setFormData((previous) => ({
       ...previous,
       [field]: value,
     }));
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent,
-  ) => {
+  const handleSubmit = async (event: React.FormEvent ) => {
     event.preventDefault();
-
     await onSubmit(formData);
   };
 
@@ -72,15 +64,11 @@ export default function DepartmentForm({
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-text-primary">
-              {mode === "create"
-                ? "Add Department"
-                : "Edit Department"}
+              {mode === "create" ? "Add Department" : "Edit Department"}
             </h2>
 
             <p className="mt-1 text-sm text-text-muted">
-              {mode === "create"
-                ? "Create a new department."
-                : "Update department information."}
+              {mode === "create" ? "Create a new department." : "Update department information."}
             </p>
           </div>
 
@@ -93,19 +81,11 @@ export default function DepartmentForm({
           </button>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Department Name"
             value={formData.dept_name}
-            onChange={(event) =>
-              handleChange(
-                "dept_name",
-                event.target.value,
-              )
-            }
+            onChange={(event) => handleChange( "dept_name", event.target.value )}
             placeholder="Enter department name"
             required
           />
@@ -117,12 +97,7 @@ export default function DepartmentForm({
 
             <textarea
               value={formData.description}
-              onChange={(event) =>
-                handleChange(
-                  "description",
-                  event.target.value,
-                )
-              }
+              onChange={(event) => handleChange( "description", event.target.value )}
               placeholder="Enter department description"
               rows={4}
               className="w-full rounded-md border border-border bg-background-white px-3 py-2 text-sm text-text-primary outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
@@ -130,17 +105,14 @@ export default function DepartmentForm({
           </div>
 
         <div className="mt-8 flex justify-end gap-3 border-t border-border-light pt-5">
-          <button
-            type="button"
-            onClick={onClose}
+         
+          <button type="button" onClick={onClose}
             className="rounded-md border border-border bg-white px-5 py-2.5 text-sm font-medium text-text-secondary transition hover:bg-background-muted"
           >
             Cancel
           </button>
 
-          <button
-            type="submit"
-            disabled={loading}
+          <button type="submit" disabled={loading}
             className="rounded-md bg-primary-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? "Saving..." : mode === "create" ? "Add Employee" : "Save Changes"}

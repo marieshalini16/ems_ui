@@ -1,6 +1,5 @@
 import Input from "../../../../componenets/ui/Input";
 import Select from "../../../../componenets/ui/Select";
-
 import type { Department } from "../employees.types";
 
 
@@ -22,10 +21,9 @@ export default function EmployeeFilters({
   onSearchChange,
   onDepartmentChange,
 }: EmployeeFiltersProps) {
+
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-      {/* Search */}
-
       <div className="relative">
         <span
           className="
@@ -43,22 +41,18 @@ export default function EmployeeFilters({
         <Input
           label=""
           value={search}
-          onChange={(event) =>
-            onSearchChange(event.target.value)
-          }
+          onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Search by name or email..."
           className="pl-9"
         />
       </div>
 
-      {/* Department */}
+
       <div className="pt-1.5">
         <Select
           value={departmentId}
-          onChange={(event) =>
-            onDepartmentChange(event.target.value)
-          }
-        >
+          onChange={(event) => onDepartmentChange(event.target.value)}>
+
           <option value="">All Departments</option>
 
           {departments.map((department) => (
@@ -66,6 +60,7 @@ export default function EmployeeFilters({
               {department.dept_name}
             </option>
           ))}
+
         </Select>
       </div>
     </div>

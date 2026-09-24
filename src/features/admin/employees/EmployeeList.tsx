@@ -1,55 +1,38 @@
 import DashboardLayout from "../../../componenets/layout/DashboardLayout";
 import { adminSidebarItems } from "../../../componenets/layout/sidebar.config";
-
 import PageHeader from "../../../componenets/common/PageHeader";
-import DataTable, {
-  type TableColumn,
-} from "../../../componenets/common/DataTable";
+import DataTable, { type TableColumn } from "../../../componenets/common/DataTable";
 import Pagination from "../../../componenets/common/Pagination";
 import StatusBadge from "../../../componenets/common/StatusBadge";
-
 import EmployeeFilters from "./components/EmployeeFilters";
 import EmployeeActions from "./components/EmployeeActions";
 import EmployeeForm from "./components/EmployeeForm";
-
-import type {
-  Department,
-  Employee,
-  EmployeeFormData,
-} from "./employees.types";
+import type { Department, Employee, EmployeeFormData } from "./employees.types";
 
 interface EmployeeListProps {
   userName: string;
   employees: Employee[];
   departments: Department[];
-
   search: string;
   departmentId: string;
   status: string;
-
   page: number;
   totalPages: number;
-
   loading: boolean;
   formLoading: boolean;
-
   showForm: boolean;
   formMode: "create" | "edit";
   selectedEmployee?: Employee;
 
   onLogout: () => void;
-
   onAddEmployee: () => void;
   onEditEmployee: (employee: Employee) => void;
-
   onSearchChange: (value: string) => void;
   onDepartmentChange: (value: string) => void;
   onStatusChange: (value: string) => void;
-
   onPageChange: (page: number) => void;
-
-  onSubmit: (data: EmployeeFormData) => Promise<void>;  onCloseForm: () => void;
-
+  onSubmit: (data: EmployeeFormData) => Promise<void>;  
+  onCloseForm: () => void;
   onToggleStatus: (employee: Employee) => void;
 }
 
@@ -78,6 +61,7 @@ export default function EmployeeList({
   onCloseForm,
   onToggleStatus,
 }: EmployeeListProps) {
+
   const columns: TableColumn<Employee>[] = [
     {
       key: "name",
@@ -87,10 +71,6 @@ export default function EmployeeList({
         <div>
           <p className="font-medium text-text-primary">
             {employee.full_name}
-          </p>
-
-          <p className="mt-0.5 text-xs text-text-muted">
-            @{employee.user_name}
           </p>
         </div>
       ),
@@ -116,9 +96,7 @@ export default function EmployeeList({
       header: "Status",
 
       render: (employee) => (
-        <StatusBadge
-          active={employee.is_active === 1}
-        />
+        <StatusBadge active={employee.is_active === 1}/>
       ),
     },
 
@@ -144,7 +122,6 @@ export default function EmployeeList({
       roleName="Administrator"
       onLogout={onLogout}
     >
-      {/* Middle content only */}
 
       <div className="min-h-[calc(100vh-4rem)] bg-background px-5 py-6 lg:px-7">
 
@@ -153,8 +130,6 @@ export default function EmployeeList({
           actionLabel="Add Employee"
           onAction={onAddEmployee}
         />
-
-        {/* Filters */}
 
         <EmployeeFilters
           search={search}
@@ -166,8 +141,6 @@ export default function EmployeeList({
           onStatusChange={onStatusChange}
         />
 
-        {/* Table */}
-
         <DataTable
           columns={columns}
           data={employees}
@@ -175,15 +148,11 @@ export default function EmployeeList({
           emptyMessage="No employees found."
         />
 
-        {/* Pagination */}
-
         <Pagination
           page={page}
           totalPages={totalPages}
           onPageChange={onPageChange}
         />
-
-        {/* Add / Edit Form */}
 
         {showForm && (
           <EmployeeForm

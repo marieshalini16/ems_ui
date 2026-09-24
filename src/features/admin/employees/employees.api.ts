@@ -1,18 +1,12 @@
 import { apiClient } from "../../../api/client";
 
-import type {
-  CreateEmployeeRequest,
-  Employee,
-  EmployeeListResponse,
-  EmployeeQuery,
-  EmployeeStatusRequest,
-  UpdateEmployeeRequest,
-} from "./employees.types";
+import type { CreateEmployeeRequest, Employee, EmployeeListResponse, EmployeeQuery, EmployeeStatusRequest, UpdateEmployeeRequest } from "./employees.types";
 
 
 export async function getEmployees(
   query: EmployeeQuery = {},
 ): Promise<EmployeeListResponse> {
+
   const params = new URLSearchParams();
 
   if (query.search) {
@@ -57,6 +51,7 @@ export async function updateEmployee(
   id: number,
   data: UpdateEmployeeRequest,
 ): Promise<{ message: string; employee: Employee }> {
+  
   return apiClient<{ message: string; employee: Employee }>(
     `/employees/${id}`,
     {
@@ -70,6 +65,7 @@ export async function updateEmployeeStatus(
   id: number,
   data: EmployeeStatusRequest,
 ) {
+  
   return apiClient<{ message: string }>(
     `/employees/${id}/status`,
     {

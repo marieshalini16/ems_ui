@@ -20,11 +20,13 @@ export default function DataTable< T extends { id: number | string } >({
   
     if (data.length === 0) {
     return (
+
       <div className="px-5">
         <p className="py-10 text-center text-sm text-text-muted">
           {emptyMessage}
         </p>
       </div>
+
     );
   }
 
@@ -43,18 +45,14 @@ export default function DataTable< T extends { id: number | string } >({
 
         <tbody>
           {data.map((item) => (
-            <tr
-              key={item.id}
-              className="border-b border-border-light last:border-0"
-            >
+            <tr key={item.id} className="border-b border-border-light last:border-0">
+
               {columns.map((column) => (
-                <td
-                  key={column.key}
-                  className="px-5 py-3.5 text-sm text-text-secondary"
-                >
+                <td key={column.key} className="px-5 py-3.5 text-sm text-text-secondary">
                   {column.render(item)}
                 </td>
               ))}
+              
             </tr>
           ))}
         </tbody>

@@ -4,6 +4,7 @@ import EmployeeDashboard from "../features/employee/dashboard/EmployeeDashboard"
 import { getEmployeeDashboard,type EmployeeDashboardData } from "../features/employee/dashboard/employee-dashboard.api";
 
 export default function EmployeeDashboardPage() {
+  
   const [dashboardData, setDashboardData] = useState<EmployeeDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export default function EmployeeDashboardPage() {
       if (error instanceof Error) {
         setError(error.message);
       } 
+      
       else {
         setError("Failed to load dashboard");
       }

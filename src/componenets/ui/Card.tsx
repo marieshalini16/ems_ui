@@ -9,6 +9,7 @@ export default function Card({
   children,
   className = "",
 }: CardProps) {
+
   return (
     <div
       className={`
@@ -18,8 +19,7 @@ export default function Card({
         bg-surface
         shadow-card
         ${className}
-      `}
-    >
+      `}>
       {children}
     </div>
   );

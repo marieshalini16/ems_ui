@@ -1,4 +1,5 @@
 import { Pencil, ShieldCheck, Trash } from "lucide-react";
+
 import type { Employee } from "../employees.types";
 
 interface EmployeeActionsProps {
@@ -12,6 +13,7 @@ export default function EmployeeActions({
   onEdit,
   onToggleStatus,
 }: EmployeeActionsProps) {
+
   return (
     <div className="flex items-center gap-2">
 
@@ -25,9 +27,7 @@ export default function EmployeeActions({
 
       <button
         type="button"
-        onClick={() =>
-          onToggleStatus(employee)
-        }
+        onClick={() => onToggleStatus(employee)}
         title={
           employee.is_active
             ? "Deactivate employee"
