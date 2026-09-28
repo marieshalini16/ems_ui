@@ -20,6 +20,7 @@ interface EmployeeListProps {
   totalPages: number;
   loading: boolean;
   formLoading: boolean;
+  formError?: string;
   showForm: boolean;
   formMode: "create" | "edit";
   selectedEmployee?: Employee;
@@ -47,6 +48,7 @@ export default function EmployeeList({
   totalPages,
   loading,
   formLoading,
+  formError,
   showForm,
   formMode,
   selectedEmployee,
@@ -160,6 +162,7 @@ export default function EmployeeList({
             employee={selectedEmployee}
             departments={departments}
             loading={formLoading}
+            error={formError}
             onSubmit={onSubmit}
             onClose={onCloseForm}
           />

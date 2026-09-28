@@ -9,6 +9,7 @@ interface EmployeeFormProps {
   employee?: Employee;
   departments: Department[];
   loading?: boolean;
+  error?: string;
 
   onSubmit: (data: EmployeeFormData) => Promise<void>;
   onClose: () => void;
@@ -29,6 +30,8 @@ export default function EmployeeForm({
   mode,
   employee,
   departments,
+   error,        
+
   onSubmit,
   onClose,
   loading = false,
@@ -102,6 +105,11 @@ export default function EmployeeForm({
       </div>
 
       <form onSubmit={handleSubmit}>
+        {error && (
+  <div className="mb-4 rounded-md border border-danger-200 bg-danger-50 px-4 py-3 text-sm text-danger-700">
+    {error}
+  </div>
+)}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
 
           <div>
@@ -167,6 +175,7 @@ export default function EmployeeForm({
               onChange={handleChange}
               placeholder="Enter phone number"
               required
+              maxLength={10}
               className="w-full rounded-md border border-border px-3 py-2.5 text-sm outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-100"
             />
           </div>

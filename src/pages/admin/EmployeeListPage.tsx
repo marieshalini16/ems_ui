@@ -16,6 +16,7 @@ export default function EmployeeListPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [formError, setFormError] = useState("");
   const [formLoading, setFormLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [formMode, setFormMode] = useState<"create" | "edit">("create");
@@ -78,6 +79,7 @@ export default function EmployeeListPage() {
     setSelectedEmployee(undefined);
     setFormMode("create");
     setShowForm(true);
+    setFormError("");
   };
 
 
@@ -85,11 +87,13 @@ export default function EmployeeListPage() {
     setSelectedEmployee(employee);
     setFormMode("edit");
     setShowForm(true);
+    setFormError("");
   };
 
 
   const handleSubmit = async ( data: EmployeeFormData, ): Promise<void> => {
     setFormLoading(true);
+    setFormError("");
 
   try {
 
@@ -126,6 +130,9 @@ export default function EmployeeListPage() {
   
   catch (error) {
     console.error("FAILED TO SAVE EMPLOYEE:", error);
+    setFormError(
+      error instanceof Error ? error.message : "Failed to save employee",
+    );
   } 
   
   finally {
@@ -173,6 +180,7 @@ export default function EmployeeListPage() {
       totalPages={totalPages}
       loading={loading}
       formLoading={formLoading}
+      formError={formError}
       showForm={showForm}
       formMode={formMode}
       selectedEmployee={selectedEmployee}
@@ -201,6 +209,7 @@ export default function EmployeeListPage() {
       onCloseForm={() => {
         setShowForm(false);
         setSelectedEmployee(undefined);
+        setFormError("");
       }}
 
       onToggleStatus={handleToggleStatus}
