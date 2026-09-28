@@ -23,23 +23,7 @@ export default function Input({
       <input
         id={id}
         {...props}
-        className={`
-          w-full
-          rounded-md
-          border
-          border-border
-          bg-white
-          px-3
-          py-2.5
-          text-sm
-          text-text-primary
-          outline-none
-          transition
-          duration-fast
-          placeholder:text-text-muted
-          focus:border-primary-500
-          focus:ring-2
-          focus:ring-primary-100
+        className={` w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm text-text-primary outline-none transition duration-fast placeholder:text-text-muted focus:border-primary-500 focus:ring-2 focus:ring-primary-100
           ${
             error
               ? "border-danger-500"

@@ -33,14 +33,7 @@ export default function EmployeeActions({
             ? "Deactivate employee"
             : "Activate employee"
         }
-        className={`
-          flex
-          h-8
-          w-8
-          items-center
-          justify-center
-          rounded-md
-          transition
+        className={` flex h-8 w-8 items-center justify-center rounded-md transition
 
           ${
             employee.is_active

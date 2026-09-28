@@ -7,14 +7,7 @@ export default function StatusBadge({
 }: StatusBadgeProps) {
   return (
     <span
-      className={`
-        inline-flex
-        items-center
-        rounded-full
-        px-2.5
-        py-1
-        text-xs
-        font-medium
+      className={` inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium
         ${
           active
             ? "bg-success-50 text-success-700"
@@ -23,11 +16,7 @@ export default function StatusBadge({
       `}
     >
       <span
-        className={`
-          mr-1.5
-          h-1.5
-          w-1.5
-          rounded-full
+        className={` mr-1.5 h-1.5 w-1.5 rounded-full
           ${
             active
               ? "bg-success-500"

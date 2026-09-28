@@ -2,18 +2,9 @@ import { useEffect, useState } from "react";
 
 import EmployeeList from "../../features/admin/employees/EmployeeList";
 import { getDepartments } from "../../features/admin/departments/departments.api";
-import type {
-  Department,
-  Employee,
-  EmployeeFormData,
-} from "../../features/admin/employees/employees.types";
+import type { Department, Employee, EmployeeFormData} from "../../features/admin/employees/employees.types";
 
-import {
-  getEmployees,
-  createEmployee,
-  updateEmployee,
-  updateEmployeeStatus,
-} from "../../features/admin/employees/employees.api";
+import { getEmployees, createEmployee, updateEmployee, updateEmployeeStatus } from "../../features/admin/employees/employees.api";
 
 export default function EmployeeListPage() {
 
@@ -39,29 +30,18 @@ export default function EmployeeListPage() {
 
       const response = await getEmployees({
         search: search.trim() || undefined,
-
-        dept_id: departmentId
-          ? Number(departmentId)
-          : undefined,
-
-        is_active:
-          status !== ""
-            ? Number(status)
-            : undefined,
-
+        dept_id: departmentId ? Number(departmentId) : undefined,
+        is_active: status !== "" ? Number(status) : undefined,
         page,
         limit: 5,
       });
 
       setEmployees(response.data);
-      setTotalPages(response.totalPages);
+      setTotalPages(response.pagination.totalPages);
     } 
     
     catch (error) {
-      console.error(
-        "Failed to load employees:",
-        error,
-      );
+      console.error( "Failed to load employees:", error, );
     } 
     
     finally {
@@ -79,22 +59,16 @@ export default function EmployeeListPage() {
     });
 
     setDepartments(response.data);
-  } catch (error) {
-    console.error(
-      "Failed to load departments:",
-      error,
-    );
+  } 
+  
+  catch (error) {
+    console.error( "Failed to load departments:", error, );
   }
 };
 
   useEffect(() => {
     loadEmployees();
-  }, [
-    search,
-    departmentId,
-    status,
-    page,
-  ]);
+  }, [ search, departmentId, status, page, ]);
 
   useEffect(() => {
     loadDepartments();
@@ -107,22 +81,18 @@ export default function EmployeeListPage() {
   };
 
 
-  const handleEditEmployee = (
-    employee: Employee,
-  ) => {
+  const handleEditEmployee = ( employee: Employee, ) => {
     setSelectedEmployee(employee);
     setFormMode("edit");
     setShowForm(true);
   };
 
 
-
-  const handleSubmit = async (
-  data: EmployeeFormData,
-  ): Promise<void> => {
+  const handleSubmit = async ( data: EmployeeFormData, ): Promise<void> => {
     setFormLoading(true);
 
   try {
+
     if (data.dept_id === "") {
       console.error("Department is required");
       return;
@@ -142,22 +112,15 @@ export default function EmployeeListPage() {
     };
 
     if (formMode === "create") {
-      await createEmployee({
-        ...employeeData,
-        password: data.password,
-      });
+      await createEmployee({ ...employeeData, password: data.password, });
     } 
     
     else if (selectedEmployee) {
-      await updateEmployee(
-        selectedEmployee.id,
-        employeeData,
-      );
+      await updateEmployee( selectedEmployee.id, employeeData, );
     }
 
     setShowForm(false);
     setSelectedEmployee(undefined);
-
     await loadEmployees();
   } 
   
@@ -171,9 +134,7 @@ export default function EmployeeListPage() {
 };
 
 
-  const handleToggleStatus = async (
-    employee: Employee,
-  ) => {
+  const handleToggleStatus = async ( employee: Employee, ) => {
     try {
       await updateEmployeeStatus(
         employee.id,
@@ -186,11 +147,10 @@ export default function EmployeeListPage() {
       );
 
       await loadEmployees();
-    } catch (error) {
-      console.error(
-        "Failed to update status:",
-        error,
-      );
+    } 
+    
+    catch (error) {
+      console.error( "Failed to update status:", error, );
     }
   };
 
@@ -236,7 +196,6 @@ export default function EmployeeListPage() {
       }}
 
       onPageChange={setPage}
-
       onSubmit={handleSubmit}
 
       onCloseForm={() => {

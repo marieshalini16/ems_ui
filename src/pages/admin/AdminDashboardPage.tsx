@@ -17,11 +17,7 @@ export default function AdminDashboardPage() {
       }
 
       catch (error) {
-        setError(
-          error instanceof Error
-            ? error.message
-            : "Failed to load dashboard",
-        );
+        setError( error instanceof Error ? error.message : "Failed to load dashboard", );
       }
 
       finally {

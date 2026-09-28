@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Building2, ClipboardList, Megaphone, UserCircle } from "lucide-react";
+import { LayoutDashboard, Users, Building2, ClipboardList, UserCircle } from "lucide-react";
 
 import type { SidebarItem } from "./Sidebar";
 
@@ -25,11 +25,6 @@ export const adminSidebarItems: SidebarItem[] = [
     path: "/admin/tasks",
   },
   {
-    label: "Announcements",
-    icon: Megaphone,
-    path: "/admin/announcements",
-  },
-  {
     label: "Profile",
     icon: UserCircle,
     path: "/admin/profile",
@@ -48,13 +43,9 @@ export const employeeSidebarItems: SidebarItem[] = [
     path: "/employee/tasks",
   },
   {
-    label: "Announcements",
-    icon: Megaphone,
-    path: "/employee/announcements",
-  },
-  {
     label: "Profile",
     icon: UserCircle,
     path: "/employee/profile",
   },
 ];
+

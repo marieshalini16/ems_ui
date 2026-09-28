@@ -46,16 +46,7 @@ export default function StatCard({
   const styles = variantStyles[variant];
 
   return (
-    <div
-      className={`
-        w-full
-        rounded-xl
-        border
-        ${styles.border}
-        ${styles.background}
-        p-5
-      `}
-    >
+    <div className={` w-full rounded-xl border ${styles.border} ${styles.background} p-5 `} >
       <p className={`text-sm font-medium  ${styles.titleText}`}>
         {title}
       </p>

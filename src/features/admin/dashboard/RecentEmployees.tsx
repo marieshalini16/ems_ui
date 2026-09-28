@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import StatusBadge from "../../../componenets/dashboard/DashboardStatusBadge";
 import DashboardTable, { type TableColumn } from "../../../componenets/dashboard/DashboardTable";
 import type { RecentEmployee } from "./admin-dashboard.api";
@@ -10,6 +12,8 @@ interface RecentEmployeesProps {
 
 
 export default function RecentEmployees({ employees }: RecentEmployeesProps) {
+    const navigate = useNavigate();
+
     const columns: TableColumn<RecentEmployee>[] = [
         {
             key: "name",
@@ -57,6 +61,7 @@ export default function RecentEmployees({ employees }: RecentEmployeesProps) {
 
                 <button
                     type="button"
+                    onClick={() => navigate("/admin/employees")}
                     className="text-xs font-medium text-primary-600 transition duration-fast hover:text-primary-700"
                 >
                     View all

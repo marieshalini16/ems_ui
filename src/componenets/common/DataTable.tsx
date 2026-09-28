@@ -30,15 +30,7 @@ export default function DataTable<T>({
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className="
-                    whitespace-nowrap
-                    px-4
-                    py-3.5
-                    text-left
-                    text-xs
-                    font-semibold
-                    text-text-secondary
-                  "
+                  className=" whitespace-nowrap px-4 py-3.5 text-left text-xs font-semibold text-text-secondary "
                 >
                   {column.header}
                 </th>
@@ -71,29 +63,15 @@ export default function DataTable<T>({
               </tr>
             ) : (
               data.map((item, index) => (
-                <tr
-                  key={index}
-                  className="
-                    border-b
-                    border-border-light
-                    last:border-b-0
-                    hover:bg-surface-muted
-                  "
-                >
+                
+                <tr key={index} className=" border-b border-border-light last:border-b-0 hover:bg-surface-muted " >
+                  
                   {columns.map((column) => (
-                    <td
-                      key={column.key}
-                      className="
-                        whitespace-nowrap
-                        px-4
-                        py-3.5
-                        text-sm
-                        text-text-secondary
-                      "
-                    >
+                    <td key={column.key} className=" whitespace-nowrap px-4 py-3.5 text-sm text-text-secondary " >
                       {column.render(item)}
                     </td>
                   ))}
+
                 </tr>
               ))
             )}

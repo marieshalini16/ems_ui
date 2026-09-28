@@ -25,16 +25,7 @@ export default function EmployeeFilters({
   return (
     <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2">
       <div className="relative">
-        <span
-          className="
-            pointer-events-none
-            absolute
-            left-3
-            top-1/2
-            -translate-y-1/2
-            text-text-muted
-          "
-        >
+        <span className=" pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-muted " >
           ⌕
         </span>
 

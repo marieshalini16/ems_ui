@@ -31,24 +31,7 @@ export default function Select({
       <select
         {...props}
         required={required}
-        className={`
-          w-full
-          rounded-md
-          border
-          border-border
-          bg-white
-          px-3
-          py-2.5
-          text-sm
-          text-text-primary
-          shadow-input
-          outline-none
-          transition
-          duration-fast
-          focus:border-primary-500
-          focus:ring-2
-          focus:ring-primary-100
-
+        className={` w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm text-text-primary shadow-input outline-none transition duration-fast focus:border-primary-500 focus:ring-2 focus:ring-primary-100
           ${className}
         `}
       >

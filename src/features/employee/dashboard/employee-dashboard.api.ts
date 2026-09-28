@@ -3,7 +3,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 export interface EmployeeDashboardStats {
   myTasks: number;
   completedTasks: number;
-  announcements: number;
 }
 
 export interface EmployeeTask {
@@ -22,7 +21,6 @@ export interface EmployeeDashboardData {
 interface EmployeeDashboardResponse {
   myTasks: number;
   completedTasks: number;
-  announcements: number;
   tasks: {
     id: number;
     title: string;
@@ -67,7 +65,6 @@ export async function getEmployeeDashboard(): Promise<EmployeeDashboardData> {
     stats: {
       myTasks: data.myTasks,
       completedTasks: data.completedTasks,
-      announcements: data.announcements,
     },
     tasks: data.tasks,
   };

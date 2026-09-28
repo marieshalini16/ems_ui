@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import DashboardLayout from "../../../componenets/layout/DashboardLayout";
 import { employeeSidebarItems } from "../../../componenets/layout/sidebar.config";
 import Card from "../../../componenets/ui/Card";
@@ -40,7 +42,7 @@ export default function EmployeeDashboard({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
           <StatCard
             title="My Tasks"
@@ -52,13 +54,7 @@ export default function EmployeeDashboard({
             title="Completed Tasks"
             value={data.stats.completedTasks}
             variant="success"
-          />
-
-          <StatCard
-            title="Announcements"
-            value={data.stats.announcements}
-            variant="purple"
-          />
+          />   
 
         </div>
 
@@ -78,6 +74,8 @@ interface MyTasksProps {
 }
 
 function MyTasks({ tasks }: MyTasksProps) {
+
+    const navigate = useNavigate();
 
   const columns: TableColumn<EmployeeTask>[] = [
     {
@@ -144,6 +142,7 @@ function MyTasks({ tasks }: MyTasksProps) {
 
         <button
           type="button"
+          onClick={() => navigate("/employee/tasks")}
           className="text-xs font-medium text-primary-600 transition duration-fast hover:text-primary-700"
         >
           View all

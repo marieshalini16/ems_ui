@@ -17,9 +17,7 @@ export default function RegisterForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = async ( event: React.FormEvent<HTMLFormElement>, ) => {
 
     event.preventDefault();
     setError("");
@@ -36,7 +34,7 @@ export default function RegisterForm() {
     }
 
     try {
-
+      //calls register from auth.api
       await register({
         fullname: fullname.trim(),
         email: email.trim(),
@@ -51,18 +49,12 @@ export default function RegisterForm() {
       setPhone("");
       setPassword("");
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+      setTimeout(() => { navigate("/login"); }, 1500);
 
     } 
     
     catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Unable to register",
-      );
+      setError( error instanceof Error ? error.message : "Unable to register", );
     } 
   };
 
@@ -106,35 +98,13 @@ export default function RegisterForm() {
       />
 
       {error && (
-        <div
-          className="
-            rounded-md
-            border
-            border-danger-200
-            bg-danger-50
-            px-3
-            py-2.5
-            text-sm
-            text-danger-700
-          "
-        >
+        <div className=" rounded-md border border-danger-200 bg-danger-50 px-3 py-2.5 text-sm text-danger-700 " >
           {error}
         </div>
       )}
 
       {success && (
-        <div
-          className="
-            rounded-md
-            border
-            border-success-200
-            bg-success-50
-            px-3
-            py-2.5
-            text-sm
-            text-success-700
-          "
-        >
+        <div className=" rounded-md border border-success-200 bg-success-50 px-3 py-2.5 text-sm text-success-700 " >
           {success}
         </div>
       )}

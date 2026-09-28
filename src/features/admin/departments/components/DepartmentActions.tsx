@@ -28,15 +28,7 @@ export default function DepartmentActions({
       <button
         type="button"
         onClick={() => onToggleStatus(department)}
-        className={`
-          flex
-          h-8
-          w-8
-          items-center
-          justify-center
-          rounded-md
-          transition
-
+        className={` flex h-8 w-8 items-center justify-center rounded-md transition
           ${
             department.is_active
               ? "bg-danger-50 text-danger-600 hover:bg-danger-100"

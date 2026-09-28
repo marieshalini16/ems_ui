@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
 
 import DepartmentList from "../../features/admin/departments/DepartmentList";
+import type { Department, DepartmentFormData, } from "../../features/admin/departments/departments.types";
+import { getDepartments, createDepartment, updateDepartment, updateDepartmentStatus, } from "../../features/admin/departments/departments.api";
 
-import type {
-  Department,
-  DepartmentFormData,
-} from "../../features/admin/departments/departments.types";
-
-import {
-  getDepartments,
-  createDepartment,
-  updateDepartment,
-  updateDepartmentStatus,
-} from "../../features/admin/departments/departments.api";
 
 export default function DepartmentListPage() {
-  const [departments, setDepartments] =
-    useState<Department[]>([]);
-
+  
+  const [departments, setDepartments] = useState<Department[]>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -41,12 +31,13 @@ export default function DepartmentListPage() {
 
       setDepartments(response.data);
       setTotalPages(response.totalPages);
-    } catch (error) {
-      console.error(
-        "Failed to load departments:",
-        error,
-      );
-    } finally {
+    } 
+    
+    catch (error) {
+      console.error( "Failed to load departments:", error, );
+    } 
+    
+    finally {
       setLoading(false);
     }
   };
@@ -65,17 +56,13 @@ export default function DepartmentListPage() {
   };
 
 
-  const handleEditDepartment = (
-    department: Department,
-  ) => {
+  const handleEditDepartment = ( department: Department, ) => {
     setSelectedDepartment(department);
     setFormMode("edit");
     setShowForm(true);
   };
 
-  const handleSubmit = async (
-    data: DepartmentFormData,
-  ): Promise<void> => {
+  const handleSubmit = async ( data: DepartmentFormData, ): Promise<void> => {
     setFormLoading(true);
 
     try {
@@ -87,9 +74,7 @@ export default function DepartmentListPage() {
       } 
       
       else if (selectedDepartment) {
-        await updateDepartment(
-          selectedDepartment.id,
-          {
+        await updateDepartment( selectedDepartment.id, {
             dept_name: data.dept_name,
             description: data.description,
           },
@@ -98,15 +83,11 @@ export default function DepartmentListPage() {
 
       setShowForm(false);
       setSelectedDepartment(undefined);
-
       await loadDepartments();
     } 
     
     catch (error) {
-      console.error(
-        "Failed to save department:",
-        error,
-      );
+      console.error( "Failed to save department:", error, );
     } 
     
     finally {
@@ -115,9 +96,7 @@ export default function DepartmentListPage() {
   };
 
 
-  const handleToggleStatus = async (
-    department: Department,
-  ) => {
+  const handleToggleStatus = async ( department: Department, ) => {
     try {
       await updateDepartmentStatus(
         department.id,
@@ -130,11 +109,10 @@ export default function DepartmentListPage() {
       );
 
       await loadDepartments();
-    } catch (error) {
-      console.error(
-        "Failed to update department status:",
-        error,
-      );
+    } 
+    
+    catch (error) {
+      console.error( "Failed to update department status:", error, );
     }
   };
 
@@ -160,6 +138,7 @@ export default function DepartmentListPage() {
       onLogout={handleLogout}
       onAddDepartment={handleAddDepartment}
       onEditDepartment={handleEditDepartment}
+      
       onSearchChange={(value) => {
         setSearch(value);
         setPage(1);

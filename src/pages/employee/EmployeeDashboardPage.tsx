@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import EmployeeDashboard from "../features/employee/dashboard/EmployeeDashboard";
-import { getEmployeeDashboard,type EmployeeDashboardData } from "../features/employee/dashboard/employee-dashboard.api";
+import EmployeeDashboard from "../../features/employee/dashboard/EmployeeDashboard";
+import { getEmployeeDashboard,type EmployeeDashboardData } from "../../features/employee/dashboard/employee-dashboard.api";
 
 export default function EmployeeDashboardPage() {
   

@@ -1,14 +1,17 @@
-import { useState, type SubmitEvent } from "react";
+import { useContext, useState, type SubmitEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 import Button from "../../componenets/ui/Button";
 import Input from "../../componenets/ui/Input";
 import { login } from "./auth.api";
+import {UserContext} from "../../UserContext";
+import { getProfile } from "../profile/profile.api";
 
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +40,10 @@ export default function LoginForm() {
       localStorage.setItem("userId", String(data.userId));
       localStorage.setItem("role_id", String(data.role_id));
 
+      const profile = await getProfile();
+      userContext?.setUserName(profile.full_name);
+      userContext?.setRole(profile.role?.role ?? "");
+
       if (data.role_id === 1) {
         navigate("/admin/dashboard");
       } 
@@ -49,19 +56,12 @@ export default function LoginForm() {
     } 
     
     catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Unable to login.",
-      );
+      setError( error instanceof Error ? error.message : "Unable to login.", );
     }
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-5"
-    >
+    <form onSubmit={handleSubmit} className="space-y-5" >
       <Input
         id="email"
         type="email"
@@ -70,7 +70,6 @@ export default function LoginForm() {
         value={email}
         onChange={(event) => setEmail(event.target.value)}
       />
-
 
       <Input
         id="password"

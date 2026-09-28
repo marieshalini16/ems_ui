@@ -6,17 +6,7 @@ import { UsersRound } from "lucide-react";
 
 export default function Register() {
   return (
-    <main
-      className="
-        flex
-        min-h-screen
-        items-center
-        justify-center
-        bg-background
-        px-4
-        py-8
-      "
-    >
+    <main className=" flex min-h-screen items-center justify-center bg-background px-4 py-8 " >
       <Card className="w-full max-w-md p-8">
        
         <div className="mb-6 flex justify-center">
@@ -40,27 +30,13 @@ export default function Register() {
 
         <RegisterForm />
 
-        <div
-          className="
-            mt-6
-            border-t
-            border-border-light
-            pt-5
-            text-center
-          "
-        >
+        <div className=" mt-6 border-t border-border-light pt-5 text-center " >
           <p className="text-sm text-text-secondary">
             Already have an account?{" "}
 
             <Link
               to="/login"
-              className="
-                font-medium
-                text-primary-600
-                transition
-                duration-fast
-                hover:text-primary-700
-              "
+              className=" font-medium text-primary-600 transition duration-fast hover:text-primary-700 "
             >
               Login
             </Link>

@@ -18,6 +18,7 @@ export default function AdminDashboard({
   onLogout,
 }: AdminDashboardProps) {
   
+  
   return (
     <DashboardLayout
       sidebarItems={adminSidebarItems}

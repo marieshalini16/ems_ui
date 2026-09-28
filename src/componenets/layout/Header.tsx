@@ -1,11 +1,16 @@
+import { useContext } from "react";
+
 import { ChevronDown, UserCircle } from "lucide-react";
+import {UserContext} from "../../UserContext";
 
 interface HeaderProps {
   userName: string;
 }
 
 export default function Header({ userName }: HeaderProps) {
-    
+    const userContext = useContext(UserContext);
+  const displayName = userContext?.userName || userName; 
+
   return (
     <header className="flex h-header items-center justify-end border-b border-border bg-surface px-6">
       <button
@@ -19,7 +24,7 @@ export default function Header({ userName }: HeaderProps) {
 
         <div className="hidden text-left sm:block">
           <p className="text-sm font-medium text-text-primary">
-            {userName}
+            {displayName}
           </p>
         </div>
 

@@ -54,10 +54,12 @@ export interface EmployeeQuery {
 
 export interface EmployeeListResponse {
   data: Employee[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+   pagination: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
 }
 
 export interface EmployeeFormData {

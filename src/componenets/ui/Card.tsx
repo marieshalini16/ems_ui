@@ -12,14 +12,7 @@ export default function Card({
 
   return (
     <div
-      className={`
-        rounded-xl
-        border
-        border-border
-        bg-surface
-        shadow-card
-        ${className}
-      `}>
+      className={` rounded-xl border border-border bg-surface shadow-card ${className} `}>
       {children}
     </div>
   );

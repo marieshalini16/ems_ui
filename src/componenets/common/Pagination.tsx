@@ -22,22 +22,7 @@ export default function Pagination({
           type="button"
           disabled={page === 1}
           onClick={() => onPageChange(page - 1)}
-          className=" 
-            flex
-            h-9
-            w-9
-            items-center
-            justify-center
-            rounded-md
-            border
-            border-border
-            bg-white
-            text-text-secondary
-            transition
-            hover:bg-surface-muted
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
+          className=" flex h-9 w-9 items-center justify-center rounded-md border border-border bg-white text-text-secondary transition hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-40 "
         >
           ‹
         </button>
@@ -47,17 +32,7 @@ export default function Pagination({
             key={pageNumber}
             type="button"
             onClick={() => onPageChange(pageNumber) }
-            className={`
-              flex
-              h-9
-              w-9
-              items-center
-              justify-center
-              rounded-md
-              text-sm
-              font-medium
-              transition
-
+            className={` flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition
               ${
                 pageNumber === page
                   ? "bg-primary-600 text-white"
@@ -73,22 +48,7 @@ export default function Pagination({
           type="button"
           disabled={page === totalPages}
           onClick={() => onPageChange(page + 1)}
-          className="
-            flex
-            h-9
-            w-9
-            items-center
-            justify-center
-            rounded-md
-            border
-            border-border
-            bg-surface
-            text-text-secondary
-            transition
-            hover:bg-surface-muted
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
+          className=" flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-text-secondary transition hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-40 "
         >
           ›
         </button>
